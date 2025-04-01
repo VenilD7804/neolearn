@@ -10,11 +10,11 @@
             flex-direction: column;
             align-items: center;
             margin: 0;
-            background: linear-gradient(135deg, #e0f2fe, #f0f8ff);
+            background: linear-gradient(135deg, #f0f8ff, #e0f2fe);
             font-family: 'Montserrat', sans-serif;
             color: #333;
             line-height: 1.6;
-            opacity: 1;
+            padding: 20px;
         }
 
         .header-logo {
@@ -28,63 +28,94 @@
 
         .branding {
             text-align: center;
-            padding: 40px 20px;
             max-width: 800px;
+            margin-bottom: 40px;
         }
 
         .branding h1 {
             color: #2e8b57;
-            font-size: 3em;
-            margin-bottom: 15px;
+            font-size: 2.8em;
+            margin-bottom: 10px;
             letter-spacing: -1px;
             font-weight: 700;
         }
 
         .branding p {
-            font-size: 1.2em;
-            color: #444;
+            font-size: 1.1em;
+            color: #555;
             margin-bottom: 30px;
             font-weight: 300;
         }
 
-        .button-container {
+        .main-container {
             display: flex;
-            flex-direction: column; /* Changed to column to stack the input and buttons */
-            gap: 25px;
-            margin-top: 40px;
+            width: 90%;
+            max-width: 1100px;
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .left-section, .right-section {
+            flex: 1;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .separator {
+            width: 2px;
+            background-color: #eee;
+            height: 100%;
         }
 
         .scene-button {
-            padding: 18px 35px;
-            font-size: 18px;
+            padding: 16px 30px;
+            font-size: 16px;
             border: none;
-            border-radius: 10px;
-            background: linear-gradient(135deg, #4dabf5, #007bff);
+            border-radius: 8px;
+            background: linear-gradient(135deg, #63a4ff, #007bff);
             color: white;
             cursor: pointer;
             transition: transform 0.2s ease, box-shadow 0.2s ease;
-            box-shadow: 0 6px 12px rgba(0, 123, 255, 0.4);
+            box-shadow: 0 4px 10px rgba(0, 123, 255, 0.3);
             font-weight: 600;
+            margin: 10px 0;
         }
 
         .scene-button:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 18px rgba(0, 0, 0, 0.25);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 14px rgba(0, 0, 0, 0.2);
         }
 
         .scene-button:active,
         .scene-button.selected {
-            transform: scale(1.05);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.35);
+            transform: scale(1.02);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
         }
 
         .input-field {
-            padding: 12px 20px;
+            padding: 14px 25px;
             font-size: 16px;
             border: 1px solid #ddd;
             border-radius: 8px;
-            width: 300px; /* Adjust width as needed */
-            box-sizing: border-box; /* Include padding and border in element's total width and height */
+            width: 80%;
+            box-sizing: border-box;
+            margin-bottom: 15px;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        #displayArea {
+            margin-top: 15px;
+            font-size: 1.1em;
+            color: #444;
+            text-align: center;
+            background-color: #f9f9f9;
+            padding: 12px;
+            border-radius: 6px;
         }
     </style>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
@@ -94,18 +125,30 @@
 
     <div class="branding">
         <h1>NeoLearn Experience</h1>
-        <p>Unlock your potential with NeoLearn Experience. Explore interactive learning environments and discover new ways to grow your knowledge. NeoLearn is designed to provide immersive and engaging educational experiences.</p>
+        <p>Explore immersive learning environments and discover new ways to grow your knowledge with NeoLearn. We are dedicated to providing engaging educational experiences.</p>
     </div>
 
-    <div class="button-container">
-        <input type="text" class="input-field" placeholder="Enter string here">
-        <button class="scene-button" onclick="openLink('https://meprotech.github.io/Space/')">Space</button>
-        <button class="scene-button" onclick="openLink('https://feniljagani.itch.io/heart?secret=apj9U5e7E8DNcjBYbTV50FFLMa0')">Heart</button>
+    <div class="main-container">
+        <div class="left-section">
+            <button class="scene-button" onclick="openLink('https://meprotech.github.io/Space/')">Space</button>
+            <button class="scene-button" onclick="openLink('https://feniljagani.itch.io/heart?secret=apj9U5e7E8DNcjBYbTV50FFLMa0')">Heart</button>
+        </div>
+        <div class="separator"></div>
+        <div class="right-section">
+            <input type="text" id="userInput" class="input-field" placeholder="Enter string here">
+            <button class="scene-button" onclick="displayInput()">Display</button>
+            <div id="displayArea"></div>
+        </div>
     </div>
 
     <script>
         function openLink(link) {
             window.open(link, '_blank');
+        }
+
+        function displayInput() {
+            const inputValue = document.getElementById('userInput').value;
+            document.getElementById('displayArea').textContent = "You entered: " + inputValue;
         }
     </script>
 </body>
