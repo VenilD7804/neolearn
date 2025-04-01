@@ -14,7 +14,7 @@
             font-family: 'Montserrat', sans-serif;
             color: #333;
             line-height: 1.6;
-            opacity: 1; /* Opacity set to 1 for testing, remove or set to 0 later*/
+            opacity: 1;
         }
 
         .header-logo {
@@ -49,6 +49,7 @@
 
         .button-container {
             display: flex;
+            flex-direction: column; /* Changed to column to stack the input and buttons */
             gap: 25px;
             margin-top: 40px;
         }
@@ -77,15 +78,14 @@
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.35);
         }
 
-        /* Add a subtle animation on load */
-        /*body {
-            opacity: 0;
-            transition: opacity 0.8s ease-in-out;
+        .input-field {
+            padding: 12px 20px;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            width: 300px; /* Adjust width as needed */
+            box-sizing: border-box; /* Include padding and border in element's total width and height */
         }
-
-        body.loaded {
-            opacity: 1;
-        }*/
     </style>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
 </head>
@@ -98,6 +98,7 @@
     </div>
 
     <div class="button-container">
+        <input type="text" class="input-field" placeholder="Enter string here">
         <button class="scene-button" onclick="openLink('https://meprotech.github.io/Space/')">Space</button>
         <button class="scene-button" onclick="openLink('https://feniljagani.itch.io/heart?secret=apj9U5e7E8DNcjBYbTV50FFLMa0')">Heart</button>
     </div>
@@ -106,10 +107,6 @@
         function openLink(link) {
             window.open(link, '_blank');
         }
-
-        /*window.addEventListener('load', function() {
-            document.body.classList.add('loaded');
-        });*/
     </script>
 </body>
 </html>
