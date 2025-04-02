@@ -132,16 +132,19 @@
 
   <script>
     // Opens the provided link. For the Space button, we add the audioUrl query parameter.
+   // Updated function to handle both buttons
     function openLink(link) {
-      // If the link is for Space, append the audioUrl parameter.
-      if (link.indexOf("Space") > -1) {
         const inputValue = document.getElementById('userInput').value;
-        // Only append if user entered a value; otherwise use default behavior.
+        // Always append audioUrl if input exists for any button
         if (inputValue) {
-          link = link + "?audioUrl=" + encodeURIComponent(inputValue);
+            link = link + "?audioUrl=" + encodeURIComponent(inputValue);
         }
-      }
-      window.open(link, '_blank');
+        window.open(link, '_blank');
+    }
+
+    function displayInput() {
+        const inputValue = document.getElementById('userInput').value;
+        document.getElementById('displayArea').textContent = "You entered: " + inputValue;
     }
 
     function displayInput() {
