@@ -16,53 +16,17 @@
       line-height: 1.6;
       padding: 20px;
     }
-    .header-logo {
-      width: 100%;
-      max-height: 250px;
-      object-fit: cover;
-      display: block;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-      border-bottom: 1px solid #ddd;
+    h1 {
+      font-size: 24px;
     }
-    .branding {
-      text-align: center;
-      max-width: 800px;
-      margin-bottom: 40px;
-    }
-    .branding h1 {
-      color: #2e8b57;
-      font-size: 2.8em;
-      margin-bottom: 10px;
-      letter-spacing: -1px;
-      font-weight: 700;
-    }
-    .branding p {
-      font-size: 1.1em;
-      color: #555;
-      margin-bottom: 30px;
-      font-weight: 300;
-    }
-    .main-container {
-      display: flex;
-      width: 90%;
-      max-width: 1100px;
-      background-color: white;
-      border-radius: 12px;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-      overflow: hidden;
-    }
-    .left-section, .right-section {
-      flex: 1;
-      padding: 30px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-    }
-    .separator {
-      width: 2px;
-      background-color: #eee;
-      height: 100%;
+    input {
+      padding: 10px;
+      font-size: 16px;
+      width: 80%;
+      max-width: 400px;
+      margin-bottom: 15px;
+      border: 2px solid #007bff;
+      border-radius: 8px;
     }
     .scene-button {
       padding: 16px 30px;
@@ -72,81 +36,28 @@
       background: linear-gradient(135deg, #63a4ff, #007bff);
       color: white;
       cursor: pointer;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-      box-shadow: 0 4px 10px rgba(0, 123, 255, 0.3);
+      transition: transform 0.2s ease;
       font-weight: 600;
       margin: 10px 0;
     }
     .scene-button:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.2);
-    }
-    .scene-button:active,
-    .scene-button.selected {
-      transform: scale(1.02);
-      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-    }
-    .input-field {
-      padding: 14px 25px;
-      font-size: 16px;
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      width: 80%;
-      box-sizing: border-box;
-      margin-bottom: 15px;
-      box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
-    }
-    #displayArea {
-      margin-top: 15px;
-      font-size: 1.1em;
-      color: #444;
-      text-align: center;
-      background-color: #f9f9f9;
-      padding: 12px;
-      border-radius: 6px;
+      transform: scale(1.05);
     }
   </style>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-  <img src="logo.png" alt="NeoLearn Header Logo" class="header-logo">
-
-  <div class="branding">
-    <h1>NeoLearn Experience</h1>
-    <p>Explore immersive learning environments and discover new ways to grow your knowledge with NeoLearn. We are dedicated to providing engaging educational experiences.</p>
-  </div>
-
-  <div class="main-container">
-    <div class="left-section">
-      <!-- When clicking "Space", we read the input and append it to the URL -->
-      <button class="scene-button" onclick="openLink('https://meprotech.github.io/Space/')">Space</button>
-      <button class="scene-button" onclick="openLink('https://feniljagani.itch.io/heart?secret=apj9U5e7E8DNcjBYbTV50FFLMa0')">Heart</button>
-    </div>
-    <div class="separator"></div>
-    <div class="right-section">
-      <input type="text" id="userInput" class="input-field" placeholder="Enter audio URL here">
-      <button class="scene-button" onclick="displayInput()">Display</button>
-      <div id="displayArea"></div>
-    </div>
-  </div>
+  <h1>NeoLearn Experience</h1>
+  <input type="text" id="userInput" placeholder="Enter audio URL here">
+  <button class="scene-button" onclick="openScene('https://meprotech.github.io/Space/')">Space</button>
+  <button class="scene-button" onclick="openScene('https://feniljagani.itch.io/heart')">Heart</button>
 
   <script>
-    // Opens the provided link. For the Space button, we add the audioUrl query parameter.
-    function openLink(link) {
-      // If the link is for Space, append the audioUrl parameter.
-      if (link.indexOf("Space") > -1) {
-        const inputValue = document.getElementById('userInput').value;
-        // Only append if user entered a value; otherwise use default behavior.
-        if (inputValue) {
-          link = link + "?audioUrl=" + encodeURIComponent(inputValue);
-        }
+    function openScene(url) {
+      let audioUrl = document.getElementById('userInput').value;
+      if (audioUrl) {
+        url += "?audioUrl=" + encodeURIComponent(audioUrl);
       }
-      window.open(link, '_blank');
-    }
-
-    function displayInput() {
-      const inputValue = document.getElementById('userInput').value;
-      document.getElementById('displayArea').textContent = "You entered: " + inputValue;
+      window.open(url, '_blank');
     }
   </script>
 </body>
